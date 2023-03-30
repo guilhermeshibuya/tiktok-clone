@@ -1,38 +1,42 @@
+:root {
+  --background: #000000;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
 .App {
-  text-align: center;
+  background-color: var(--background);
+  height: 100vh;
+  display: grid;
+  place-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app__videos {
+  height: 100vh;
+  max-height: 800px;
+  width: 80%;
+  max-width: 500px;
+  border: 1px solid black;
+  border-radius: 20px;
+  overflow: scroll;
+  scrollbar-width: none;
+
+  /* Especifica como os elementos entrarão em foco quando você parar de rolar e em que direção */
+  /* Quando der uma scrollada irá passar para o próximo vídeo automaticamente */
+  /* Deve ser utilziado no elemento pai */
+  scroll-snap-type: y mandatory;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ESCONDER SCROLLBAR NO CHROME, SAFARI E OPERA */
+.app__videos::-webkit-scrollbar {
+  display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ESCONDER SCROLLBAR NO EXPLORER, ESGE E FIREFOX */
+.app__videos {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

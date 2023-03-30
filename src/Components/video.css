@@ -1,0 +1,15 @@
+.video {
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    /* Especifica onde os elementos entrarão em foco quando você parar de rolar */
+    /* Deve ser utilizada nos elementos filhos */
+    scroll-snap-align: start;
+    position: relative;
+}
+
+.video__player {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
