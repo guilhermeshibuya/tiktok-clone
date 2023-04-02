@@ -1,37 +1,40 @@
-import './App.css';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore/lite';
 import Video from './pages/Video';
+import db from "./config/firebase";
+import './App.css';
 
 function App() {
+  const [videos, setVideos] = useState([]);
+
+  const getVideos = async () => {
+    const videosCollection = collection(db, "videos");
+    const videosSnapshot = await getDocs(videosCollection);
+    const videosList = videosSnapshot.docs.map(doc => doc.data());
+    setVideos(videosList);
+  }
+
+  useEffect(() => {
+    getVideos();
+  }, []);
+
   return (
     <div className="App">
       <div className="app__videos">
-        <Video 
-          likes={ 432 }
-          messages={ 241 }
-          shares={ 100 }
-          userName={ "guilhermeshibuya" }
-          description={ "Gatinho frajola goleiro" }
-          music={ "Evoque Prata" }
-          videoUrl={ "https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/brecker2.mp4" }
-        />
-        <Video 
-          likes={ 567 }
-          messages={ 23 }
-          shares={ 14 }
-          userName={ "guilhermeshibuya" }
-          description={ "Gatinho fofo goleiro" }
-          music={ "Evoque Prata" }
-          videoUrl={ "https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/brecker2.mp4" }
-        />
-        <Video 
-          likes={ 42 }
-          messages={ 3 }
-          shares={ 5 }
-          userName={ "guilhermeshibuya" }
-          description={ "Gatinho fofo goleiro" }
-          music={ "Evoque Prata" }
-          videoUrl={ "https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/brecker2.mp4" }
-        />
+        { videos.map(video => {
+            return (
+              <Video 
+                likes={ video.likes }
+                messages={ video.messages }
+                shares={ video.shares }
+                userName={ video.userName }
+                description={ video.description }
+                music={ video.music }
+                videoUrl={ video.videoUrl }
+              />
+            );
+          }) 
+        }
       </div>
     </div>
   );
