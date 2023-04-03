@@ -7,4 +7,4 @@
 Projeto realizado durante a Jornada Dev EBAC, o projeto consiste de um clone simplificado do TikTok. Foi utilizado React, MaterialUI e Firebase.
 
 Deploy:
-1. [Projeto online](https://tiktok-clone-32b57.web.app/)
+- [Projeto online](https://tiktok-clone-32b57.web.app/)
